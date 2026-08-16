@@ -1,0 +1,4 @@
+baseURL = "https://lukasdraugelis.github.io/"
+languageCode = "en-us"
+title = "Lukas Draugelis Photography"
+theme = "gallery"
