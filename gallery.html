@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Gallery — Lukas Draugelis</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@500;600&family=Inter:wght@400;500&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="assets/style.css">
+</head>
+<body>
+  <div id="navRoot"></div>
+
+  <main class="page">
+    <div class="page__head" id="galleryHead"></div>
+    <div class="grid" id="galleryGrid"></div>
+  </main>
+
+  <footer class="footer">
+    <span id="footName"></span>
+    <span>Made with light in Montana</span>
+  </footer>
+
+  <!-- lightbox -->
+  <div class="lightbox" id="lightbox" onclick="if(event.target===this)closeLightbox()">
+    <span class="lightbox__close" onclick="closeLightbox()">&times;</span>
+    <span class="lightbox__nav lightbox__prev" onclick="stepLightbox(-1)">&#8249;</span>
+    <img id="lbImg" alt="">
+    <span class="lightbox__nav lightbox__next" onclick="stepLightbox(1)">&#8250;</span>
+  </div>
+
+  <script src="config.js"></script>
+  <script src="assets/site.js"></script>
+  <script>
+    document.getElementById("navRoot").innerHTML = buildNav();
+    wireNav(true);
+    buildGallery();
+    document.getElementById("footName").textContent = `© ${new Date().getFullYear()} ${SITE.name}`;
+  </script>
+</body>
+</html>

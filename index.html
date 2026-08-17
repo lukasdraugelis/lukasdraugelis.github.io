@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Lukas Draugelis — Photography</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@500;600&family=Inter:wght@400;500&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="assets/style.css">
+</head>
+<body>
+  <div id="navRoot"></div>
+
+  <header class="hero" id="hero">
+    <div class="hero__caption">
+      <h1 class="hero__title" id="heroTitle"></h1>
+      <p class="hero__sub" id="heroSub"></p>
+    </div>
+  </header>
+
+  <footer class="footer">
+    <span id="footName"></span>
+    <span>Made with light in Montana</span>
+  </footer>
+
+  <script src="config.js"></script>
+  <script src="assets/site.js"></script>
+  <script>
+    document.getElementById("navRoot").innerHTML = buildNav();
+    wireNav(false);
+    document.getElementById("hero").style.backgroundImage = `url('${SITE.heroImage}')`;
+    document.getElementById("heroTitle").textContent = SITE.name;
+    document.getElementById("heroSub").textContent = SITE.tagline;
+    document.getElementById("footName").textContent = `© ${new Date().getFullYear()} ${SITE.name}`;
+  </script>
+</body>
+</html>

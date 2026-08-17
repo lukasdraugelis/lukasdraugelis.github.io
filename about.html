@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>About / Contact — Lukas Draugelis</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@500;600&family=Inter:wght@400;500&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="assets/style.css">
+</head>
+<body>
+  <div id="navRoot"></div>
+
+  <main class="page">
+    <div class="prose">
+      <h1>About</h1>
+      <p>I'm Lukas Draugelis, a freelance photographer based in Montana. I shoot
+         portraits, weddings, days on the water, and personal work — wherever the
+         light and the story lead.</p>
+      <p>Available for commissions and collaborations. Get in touch below.</p>
+
+      <h1 style="margin-top:50px;">Contact</h1>
+      <div id="formRoot"></div>
+    </div>
+  </main>
+
+  <footer class="footer">
+    <span id="footName"></span>
+    <span>Made with light in Montana</span>
+  </footer>
+
+  <script src="config.js"></script>
+  <script src="assets/site.js"></script>
+  <script>
+    document.getElementById("navRoot").innerHTML = buildNav();
+    wireNav(true);
+    document.getElementById("footName").textContent = `© ${new Date().getFullYear()} ${SITE.name}`;
+
+    const root = document.getElementById("formRoot");
+    if (SITE.formspreeId) {
+      root.innerHTML = `
+        <form class="form" action="https://formspree.io/f/${SITE.formspreeId}" method="POST">
+          <div>
+            <label for="name">Name</label>
+            <input id="name" type="text" name="name" required>
+          </div>
+          <div>
+            <label for="email">Email</label>
+            <input id="email" type="email" name="email" required>
+          </div>
+          <div>
+            <label for="message">Message</label>
+            <textarea id="message" name="message" rows="5" required></textarea>
+          </div>
+          <button type="submit">Send message</button>
+        </form>`;
+    } else {
+      root.innerHTML = `
+        <p class="form__note">
+          Email me at <a href="mailto:${SITE.contactEmail}" style="color:var(--ink);text-decoration:underline;">${SITE.contactEmail}</a>.<br><br>
+          To turn on the contact form, add your Formspree ID in <code>config.js</code>.
+        </p>`;
+    }
+  </script>
+</body>
+</html>
