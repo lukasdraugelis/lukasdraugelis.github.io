@@ -42,6 +42,39 @@ function wireNav(isInner) {
   toggle.addEventListener("click", () => menu.classList.toggle("open"));
 }
 
+/* ---------- landing page: hero slideshow ---------- */
+function buildHeroSlideshow() {
+  const container = document.getElementById("heroSlides");
+  if (!container) return;
+
+  // Use the slide list if provided, otherwise fall back to the single hero image.
+  const slides = (SITE.heroSlides && SITE.heroSlides.length)
+    ? SITE.heroSlides
+    : [SITE.heroImage];
+
+  // Build a stacked layer for each slide.
+  slides.forEach((src, i) => {
+    const layer = document.createElement("div");
+    layer.className = "hero__slide";
+    layer.style.backgroundImage = `url('${src}')`;
+    if (i === 0) layer.classList.add("is-active");
+    container.appendChild(layer);
+  });
+
+  // Nothing to cycle if there's only one image.
+  if (slides.length < 2) return;
+
+  const layers = container.querySelectorAll(".hero__slide");
+  let current = 0;
+  const hold = (SITE.heroSlideSeconds || 5) * 1000;
+
+  setInterval(() => {
+    layers[current].classList.remove("is-active");
+    current = (current + 1) % layers.length;
+    layers[current].classList.add("is-active");
+  }, hold);
+}
+
 /* ---------- gallery page: build the grid ---------- */
 function buildGallery() {
   const params = new URLSearchParams(location.search);
